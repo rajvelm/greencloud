@@ -73,6 +73,10 @@ r = ansible_runner.run(
     inventory='/home/socgen/greencloud/inventory.yml',
     module='ping',
     host_pattern='all'
+
+// VBoxManage installation on windows
+  sudo apt install virutalbox
+VBoxManage createvm --name "TestUbundu 20.04" --ostype Ubuntu_64 --register
 )
 python HelloWorld.py
 ram shankar
