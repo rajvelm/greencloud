@@ -1,0 +1,8 @@
+- name: Install mySQL DB in Ubuntu DBServer
+  hosts: java_servers
+  tasks:
+  - name: installing mySQL database in Ubuntu DBServer
+    ansible.builtin.apt:
+      name: mysql-server
+      state: present
+      update_cache: yes

@@ -6,7 +6,7 @@
 
 {% block body %}
 
-{{status}}
+
 <div class="content">
     <form action="/" method="POST">
         <table>
@@ -29,8 +29,10 @@
                 <td>
                     <select id="template">
                         <option>Select Template</option>
-                        <option value="java">Java Spring</option>
-                        <option value="python">Python Flask</option>
+                        <option value="java">Java </option>
+                        <option value="java">Postgres </option>
+                        <option value="java">MySQL </option>
+                        <option value="python">Python</option>
                     </select>
                 </td>
             </tr>
@@ -38,11 +40,41 @@
                 <td>
 
                 </td>
-                <td>
-                    <input type="submit" value="Go">
+                <td >
+                    <div style="margin-top:10px">
+                        <a href="/go" class="btn">Go</a>
+                    </div>
+
                 </td>
             </tr>
         </table>
+        <div style="margin: 20px 0px"> </div>
+            {% if status != '' %}
+
+                {% if status == 'successful' %}
+                    <div class="msg-success">
+                        <div>{{status}}</div>
+
+                        <div>{{rc}}</div>
+
+                        <div>{{stats}}</div>
+                    </div>
+                {% endif %}
+
+                {% if status == 'failed' %}
+                    <div class="msg-failed">
+                        <div>{{status}}</div>
+
+                        <div>{{rc}}</div>
+
+                        <div>{{stats}}</div>
+                    </div>
+                {% endif %}
+
+
+            </div>
+            {% endif %}
+
 
     </form>
 </div>

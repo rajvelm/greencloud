@@ -1,4 +1,5 @@
 import ansible_runner
+import subprocess
 from flask import Flask, render_template, url_for, request, redirect
 
 from datetime import datetime
@@ -19,12 +20,8 @@ app = Flask(__name__)
 
 @app.route('/', methods=['POST', 'GET'])
 def index():
-    r = ansible_runner.run(
-        inventory='/home/socgen/greencloud/sampleApi/inventory.yml',
-        module='ping',
-        host_pattern='all'
-    )
-    return render_template('index.html', status= r.status)
+
+    return render_template('index.html')
     # if request.method == 'POST':
     #     task_content = request.form['content']
     #     new_task = Todo(content=task_content)
@@ -56,23 +53,20 @@ def index():
 #     finally:
 #         db.session.close()
 
-# @app.route('/update/<int:id>', methods=['GET', 'POST'])
-# def update(id):
-#     task = Todo.query.get_or_404(id)
-#
-#     if request.method == 'POST':
-#         task.content = request.form['content']
-#
-#         try:
-#             db.session.commit()
-#             return redirect('/')
-#         except:
-#             return 'There was an issue updating your task'
-#         finally:
-#             db.session.close()
-#
-#     else:
-#         return render_template('update.html', task=task)
+@app.route('/go', methods=['GET', 'POST'])
+def go():
+
+    inventory_file = '/etc/ansible/hosts'
+    playbook_file = '/home/socgen/greencloud/sampleApp2/installJava.yml'
+
+    r = ansible_runner.run(
+        playbook=playbook_file,
+        inventory=inventory_file)
+
+
+
+    return render_template('index.html', status=r.status, rc = r.rc, stats=r.stats)
+
 
 
 if __name__ == "__main__":
