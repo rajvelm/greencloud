@@ -83,3 +83,31 @@ ram shankar
 15:06
 https://www.digitalocean.com/community/tutorials/how-to-make-a-web-application-using-flask-in-python-3
 yxk-spoy-nno
+
+
+use ful commands
+
+generate keygen command
+ssh-keygen -t rsa -b 4096 -C "<email id>"
+
+#update hosts
+vi /etc/ansible/hosts
+escape key + :wq
+
+#ping ansible commands
+ansible -m ping all
+
+#uninstall java on appserver
+
+sudo apt list --installed | grep java
+sudo apt remove openjdk-11-*
+sudo apt autoremove -y
+sudo apt clean -y
+
+
+#uninstall mySQL on dbserver
+
+sudo apt list --installed | grep mysql
+sudo apt remove mysql-*
+sudo apt autoremove -y
+sudo apt clean -y
